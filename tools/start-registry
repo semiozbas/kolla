@@ -4,5 +4,9 @@ docker run -d \
     --name registry \
     --restart=always \
     -p 4000:5000 \
+    -v /certs:/certs \
+    -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/fullchain.pem \
+    -e REGISTRY_HTTP_TLS_KEY=/certs/key.pem \
+    -e REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
     -v registry:/var/lib/registry \
     registry:2
